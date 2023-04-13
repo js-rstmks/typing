@@ -3,17 +3,19 @@ import useGameLogic from "./useGameLogic"
 
 function App() {
 
-const [textBoxRef, handleChange,text, problemList, finishFlg, timeRemaining, startGame, stopGame, restartGame, isTimeRunning,wordCount] = useGameLogic()    
+const [pressedWords, count, problem, finishFlg, timeRemaining, startGame, stopGame, restartGame, isTimeRunning,wordCount] = useGameLogic()    
     return (
         <>
             <h1>How many words can you type in 30 seconds?</h1>
-            <div>{problemList[0]}</div>
-            <textarea
+
+            <span style={{color: "blue"}}>{problem}</span>
+            <span style={{color: "yellow"}}>{pressedWords}</span>
+            {/* <textarea
                 ref={textBoxRef}
                 onChange={handleChange}
                 value={text}
                 disabled={!isTimeRunning}
-            />
+            /> */}
             <h4>Time remaining: {timeRemaining}</h4>
             <button 
                 onClick={startGame}
@@ -27,7 +29,7 @@ const [textBoxRef, handleChange,text, problemList, finishFlg, timeRemaining, sta
             >
                 Stop
             </button>
-            <h1>Word count: {wordCount}</h1>
+            <h1>Word count: {count}</h1>
 
             <div>
                 {finishFlg && <button onClick={restartGame}>Play Again</button>}
