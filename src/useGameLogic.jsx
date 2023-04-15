@@ -40,7 +40,6 @@ function useGameLogic(){
     useEffect( async() => {
 
         const fetchData = async () => {
-            // const problems = []
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${PROBLEM_COUNT}`, {
                 method: 'GET'
             })
@@ -64,8 +63,6 @@ function useGameLogic(){
 
     useEffect(() => {
         const handleKeyDown = (e) => {
-          // console.log(problems)
-      
           // ゲーム中のみ
           if (!isTimeRunning) {
             return
@@ -79,14 +76,13 @@ function useGameLogic(){
           // 正しくタイピングした英文字を赤色で表示
           setPressedWords(pressedWords.concat(e.key))
       
-          let oiu = problem.slice(1)
+          let firstChara = problem.slice(1)
       
           // ワードの先頭文字削除
-          setProblem(oiu)
+          setProblem(firstChara)
       
           // 文字を打ち終えたら
-          // if (problem.length === 0) {
-          if (oiu.length === 0) {
+          if (firstChara.length === 0) {
             setPressedWords("")
             setCount(count + 1)
       
@@ -101,11 +97,8 @@ function useGameLogic(){
             if (words.length === 0) {
               endGame()
             }
-      
-            console.log(words)
           }
         }
-      
         document.addEventListener('keydown', handleKeyDown)
       
         return () => {
